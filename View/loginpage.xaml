@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Online_Exam.ViewModel"
+             x:Class="Online_Exam.View.LoginPage"
+             x:DataType="vm:LoginViewModel"
+             Title="Online Exam Login"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+            <Label Text="Online Exam System"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Select Role" FontAttributes="Bold" />
+            <Picker ItemsSource="{Binding Roles}"
+                    SelectedItem="{Binding SelectedRole}"
+                    Title="Choose Role" />
+
+            <Label Text="Username / Registration No" FontAttributes="Bold" />
+            <Entry Text="{Binding UsernameOrRegNo}"
+                   Placeholder="Enter Username or Reg No" />
+
+            <VerticalStackLayout Spacing="8" IsVisible="{Binding IsPasswordVisible}">
+                <Label Text="Password" FontAttributes="Bold" />
+                <Entry Text="{Binding Password}"
+                       IsPassword="True"
+                       Placeholder="Enter Password" />
+            </VerticalStackLayout>
+
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Login"
+                    Command="{Binding LoginCommand}"
+                    HeightRequest="50"
+                    FontAttributes="Bold" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
